@@ -16,11 +16,12 @@ The goal of this site is to enable freelancers to be able to sell thier services
 ### Freelancer
 - The freelancer must be able to see orders from the admin panel
 - The freelance must be able to update the order status from the admin panel. 
+- Freelancer must be able to add, edit and delete services they offer through the admin panel
 
 
 
 ## (Scrap) Django Models
-- Services (Register with Admin)
+- Services (Add with Admin)
     - Name
     - Description
     - Price
@@ -42,3 +43,4 @@ The goal of this site is to enable freelancers to be able to sell thier services
 - Basket
 - Checkout(Buy)
 - Previous_Work 
+- Register
