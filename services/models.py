@@ -8,7 +8,7 @@ class Service(models.Model):
     """
     created_at = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=255)
-    decription = models.TextField()
+    description = models.TextField()
     price = models.IntegerField()
 
     def __str__(self):
