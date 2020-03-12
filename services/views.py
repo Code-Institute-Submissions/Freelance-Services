@@ -6,7 +6,6 @@ from .models import Service
 
 def service_list(request):
     services = Service.objects.all()
-    output = ', '.join([str(service) for service in services])
-    return HttpResponse(output)
+    return render(request, 'services/service_list.html', {'services': services})
 
 
