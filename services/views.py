@@ -6,6 +6,9 @@ from .models import Service
 
 def service_list(request):
     services = Service.objects.all()
-    return render(request, 'services/service_list.html', {'services': services})
+    close_div = [] # use to store the amount of closing div tags required.
+    while (len(close_div) < len(services) % 3):
+        close_div.append(1)
+    return render(request, 'services/service_list.html', {'services': services}, {'close_div':close_div})
 
 
