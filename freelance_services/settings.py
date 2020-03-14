@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'services', # Tells Django there is a Services App
+    'accounts', # Tells Django there is a Accounts App
+    
 ]
 
 MIDDLEWARE = [
