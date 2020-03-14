@@ -25,15 +25,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        {% if messages %}
+                            {%for message in messages %}
+                                <p class="pt-2 pr-5 font-italic font-bold text-success message"> {{ message }}</p> 
+                            {% endfor %}
+                        {% endif %}
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
+                        <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="#">Register</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="#">Login</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                     </li>
                 </ul>
@@ -41,9 +48,7 @@
         </nav>
     </header>
 
-    <div class="container">
-        
-    </div>
+  
 
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
@@ -51,6 +56,8 @@
             <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
         </div>
     </div>
+
+ 
 
     {% block content %}
     {% endblock %}
