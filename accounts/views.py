@@ -22,6 +22,7 @@ def login(request):
             if user: 
                 auth.login(user=user, request=request)
                 messages.success(request, 'You have logged in successfully')
+                return redirect(reverse('service')) #TODO: When orders page is created redirect to orders. 
             else: 
                 login_form.add_error(None, 'Your username or password is incorrect')
     else:
