@@ -26,29 +26,37 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
                         {% if messages %}
-                            {%for message in messages %}
-                                <p class="pt-2 pr-5 font-italic font-bold text-success message"> {{ message }}</p> 
-                            {% endfor %}
+                        {%for message in messages %}
+                        <p class="pt-2 pr-5 font-italic font-bold text-success message"> {{ message }}</p>
+                        {% endfor %}
                         {% endif %}
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link active" href="{% url 'service'%}">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link active" href="{% url 'service'%}">Home <span
+                                class="sr-only">(current)</span></a>
                     </li>
+                    {% if not user.is_authenticated %}
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Register</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{%url 'login'%}">Login</a>
                     </li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">My Orders</a>
+                    </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
     </header>
 
-  
+
 
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
@@ -57,7 +65,7 @@
         </div>
     </div>
 
- 
+
 
     {% block content %}
     {% endblock %}
