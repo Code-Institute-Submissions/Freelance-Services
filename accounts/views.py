@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
-from accounts.forms import LoginForm
+from django.contrib.auth.decorators import login_required # Needed for login_required decorator
+from accounts.forms import LoginForm, RegisterForm
 # Create your views here.
 
-
+@login_required # Ensures user is logged in before executing 
 def logout(request):
     """Logs the user out"""
     auth.logout(request)
@@ -12,13 +13,13 @@ def logout(request):
 
 def login(request):
     """Return log in page"""
+    if request.user.is_authenticated:
+         return redirect(reverse('service'))
     if request.method == 'POST':
         login_form = LoginForm(request.POST)
         if login_form.is_valid():
             user = auth.authenticate(username=request.POST['username'],
-                                    password=request.POST['password'])
-           
-
+                                    password=request.POST['password']) 
             if user: 
                 auth.login(user=user, request=request)
                 messages.success(request, 'You have logged in successfully')
@@ -28,3 +29,9 @@ def login(request):
     else:
         login_form = LoginForm()
     return render(request, 'accounts/login.html', {"login_form": login_form})
+
+
+def register(request):
+    """Return register page"""
+    register_form = RegisterForm()
+    return render(request, 'accounts/register.html', {"register_form": register_form})

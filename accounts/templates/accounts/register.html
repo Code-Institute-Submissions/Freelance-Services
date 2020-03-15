@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Register</h1>
+    <form method=post>
+        {% csrf_token %}
+        {{ register_form | as_bootstrap }}
+        <button type="submit" class="btn btn-primary mx-auto">Register</button>
+    </form>
+</div>
+
+{% endblock %}
