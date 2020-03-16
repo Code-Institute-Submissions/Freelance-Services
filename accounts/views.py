@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required # Needed for login_required decorator
+from django.contrib.auth.models import User
 from accounts.forms import LoginForm, RegisterForm
 # Create your views here.
 
@@ -54,3 +55,8 @@ def register(request):
     else:
         register_form = RegisterForm()
     return render(request, 'accounts/register.html', {"register_form": register_form})
+
+def profile_page(request):
+    """A page that displays the profile of the user"""
+    user = User.objects.get(email=request.user.email)
+    return render(request, 'accounts/profile.html', {"profile": user})
