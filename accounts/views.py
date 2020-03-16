@@ -33,5 +33,24 @@ def login(request):
 
 def register(request):
     """Return register page"""
-    register_form = RegisterForm()
+    if request.user.is_authenticated:
+        return redirect(reverse('service')) #TODO: When orders page is created redirect to orders.
+
+    if request.method == 'POST':
+        register_form = RegisterForm(request.POST)
+
+        if register_form.is_valid():
+            register_form.save()
+
+            user = auth.authenticate(username=request.POST['username'],
+                                     password=request.POST['password1']) 
+            
+            if user:
+                auth.login(user=user, request=request)
+                messages.success(request, 'You have successfully registered')
+                return redirect(reverse('service')) #TODO: When orders page is created redirect to orders.
+            else: 
+                messages.error(request, 'Unable to register your account at this time')
+    else:
+        register_form = RegisterForm()
     return render(request, 'accounts/register.html', {"register_form": register_form})
