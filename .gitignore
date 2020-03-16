@@ -4,4 +4,4 @@ notes.md
 requirements.txt
 db.sqlite3
 __pycache__
-*.xml
+*.xmlapp.yaml
