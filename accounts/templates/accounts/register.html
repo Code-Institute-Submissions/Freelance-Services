@@ -9,6 +9,7 @@
         {{ register_form | as_bootstrap }}
         <button type="submit" class="btn btn-primary mx-auto">Register</button>
     </form>
+    <p class="text-center">If you have an account already you can sign in <a href="{% url 'login'%}">Here</a></p>
 </div>
 
 {% endblock %}
