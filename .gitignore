@@ -4,8 +4,7 @@ notes.md
 requirements.txt
 db.sqlite3
 __pycache__
-app.yaml
+*.yaml
 static
 nohup.out
-my.cnf
-freelance_services/freelance_services/settings.py
+app.yaml
