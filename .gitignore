@@ -7,4 +7,3 @@ __pycache__
 *.yaml
 static
 nohup.out
-app.yaml
