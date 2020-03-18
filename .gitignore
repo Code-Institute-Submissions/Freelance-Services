@@ -4,4 +4,8 @@ notes.md
 requirements.txt
 db.sqlite3
 __pycache__
-*.xmlapp.yaml
+app.yaml
+static
+nohup.out
+my.cnf
+freelance_services/freelance_services/settings.py
