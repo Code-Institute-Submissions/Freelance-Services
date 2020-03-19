@@ -22,6 +22,7 @@ urlpatterns = [
    
     path('admin/', admin.site.urls),
     path('', include('services.urls')),
+    path('accounts/', include('accounts.urls')),
     re_path(r'^accounts/logout/$', logout, name="logout"),
     re_path(r'^accounts/login/$', login, name="login"),
     re_path(r'^accounts/register/$', register, name="register"),
