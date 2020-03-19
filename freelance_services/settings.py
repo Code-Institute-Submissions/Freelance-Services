@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
+    'crispy_forms',
     'services',  # Tells Django there is a Services App
     'accounts',  # Tells Django there is a Accounts App
 
@@ -139,3 +140,5 @@ STATIC_ROOT = 'static'
 STATIC_URL = '/static/'
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
