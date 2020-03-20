@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts',  # Tells Django there is a Accounts App
     'home',
     'basket',
+    'checkout',
 
 ]
 
