@@ -1,29 +1,43 @@
 {% extends 'base.html'%}
 
 {% block content %}
-
+<div class="container p-5 text-center">
+    <h1>Basket</h1>
+</div>
 <div class="container">
+    <ul class="list-unstyled">
         {% for item in basket_items %}
 
-            <h1>{{item.service.name}}</h1><br>
-            <p>{{item.service.description}}</p>
-            <p>£{{ item.service.price }}</p>
-
+        <li class="media">
+            <img src="{{item.service.images}}" class="mr-3" alt="">
+            <div class="media-body">
+                <h5>{{item.service.name}}</h5>
+                <p>{{item.service.description}}</p>
+                <p>£{{ item.service.price }}</p>
+            </div>
             <form method="POST" action="{% url 'adjust_basket' item.id %}">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="InputAmount" class="sr-only">New Qty</label>
-                    <div class="input-group-addon">Qty</div>
-                    <input name="quantity" type="number" min="0" max="10" class='form-control'>
-                    <div class="input-group-addon">{{item.quantity}}</div>
+                    <div class="input-group p-3">
+                        <input name="quantity" type="number" min="0" max="10" class='form-control'
+                            placeholder="{{item.quantity}}">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Update</button>
+
             </form>
 
-</div>
-{% endfor%}
+        </li>
 
-<div class="container">
+
+
+
+
+        {% endfor%}
+    </ul>
+</div>
+<div class="container text-right pr-4">
     <p>Total</p>
     <p><span class=""></span>£{{ total }}</p>
     <a href="/" class="btn btn-success">Checkout</a>
