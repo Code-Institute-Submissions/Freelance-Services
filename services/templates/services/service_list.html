@@ -5,44 +5,34 @@
 
 {% block content %}
 
-
-
-
 {% for service in services %}
 {% if forloop.counter  == 1 %}
 <div class="container-fluid text-center">
     <div class="card-group">
-{% endif %}
-        {% if forloop.counter|divisibleby:"4" and forloop.counter > 1 %}
-            </div>
-            </div>
-            <div class="container-fluid text-center">
-            <div class="card-group">
         {% endif %}
-                <div class="card">
-                    <img class="card-img-top" src="{{MEDIA_URL}}{{service.images}}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{service.name}}</h5>
-                        <p class="card-text">{{service.description}}</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">£{{service.price}}</small>
-                    </div>
-                </div>
-                <form method='post' action="{% url 'add_to_cart'%}">
-                    {%crsf_token}
-                    <div class="input-group">
-                        <input type="quanitity" type="number" min="1" max="1" class="form-control" placeholder="Quantity">
-                        <button class="btn btn-success" type="submit">Add to Basket</button>
-                    </div>
-                </form>
-        {% endfor %}
-
-        {% for div in close_div %}
+        {% if forloop.counter|divisibleby:"4" and forloop.counter > 1 %}
+    </div>
+</div>
+<div class="container-fluid text-center">
+    <div class="card-group">
+        {% endif %}
+        <div class="card">
+            <img class="card-img-top" src="{{MEDIA_URL}}{{service.images}}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{service.name}}</h5>
+                <p class="card-text">{{service.description}}</p>
             </div>
-        {% endfor%}
-  
+            <div class="card-footer">
+                <small class="text-muted">£{{service.price}}</small>
+            </div>
+        </div>
+        
+        {% endfor %}
+            {% for div in close_div %}
+    </div>
+    {% endfor%}
 
 
 
-{% endblock %}
+
+    {% endblock %}
