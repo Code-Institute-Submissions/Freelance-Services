@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django_forms_bootstrap',
     'services',  # Tells Django there is a Services App
     'accounts',  # Tells Django there is a Accounts App
+    'home',
+    'basket',
 
 ]
 
