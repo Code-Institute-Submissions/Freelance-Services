@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<div class="container">
+        {% for item in basket_items %}
+
+            <h1>{{item.service.name}}</h1><br>
+            <p>{{item.service.description}}</p>
+            <p>£{{ item.service.price }}</p>
+
+            <form method="POST" action="{% url 'adjust_basket' item.id %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="InputAmount" class="sr-only">New Qty</label>
+                    <div class="input-group-addon">Qty</div>
+                    <input name="quantity" type="number" min="0" max="10" class='form-control'>
+                    <div class="input-group-addon">{{item.quantity}}</div>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+
+</div>
+{% endfor%}
+
+<div class="container">
+    <p>Total</p>
+    <p><span class=""></span>£{{ total }}</p>
+    <a href="/" class="btn btn-success">Checkout</a>
+</div>
+
+{%endblock%}
