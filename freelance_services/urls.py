@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path, include
 from accounts.views import logout, login, register, profile_page
-from services.views import service_list
+from services.views import all_services
 from home.views import index
 from .settings import MEDIA_ROOT
 from django.views import static
@@ -25,8 +25,8 @@ from django.views import static
 urlpatterns = [
     path("", index, name='index'),   
     path('admin/', admin.site.urls),
-    path('service_list/', service_list, name='service_list'),
-    path('accounts/', include('accounts.urls')),
+    path('services/', all_services, name='services'),
+    path('accouns/', include('accounts.urls')),
     re_path(r'^accounts/logout/$', logout, name="logout"),
     re_path(r'^accounts/login/$', login, name="login"),
     re_path(r'^accounts/register/$', register, name="register"),
