@@ -3,5 +3,5 @@ from django.urls import path, re_path, include
 from . import views
 
 urlpatterns = [
-    re_path(r'^$', views.service_list, name='service')
+    path('service_list', views.service_list, name='service')
 ]

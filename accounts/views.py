@@ -10,7 +10,7 @@ def logout(request):
     """Logs the user out"""
     auth.logout(request)
     messages.success(request, "You have been succesfully logged out")
-    return redirect(reverse('service'))
+    return redirect(reverse('index'))
 
 def login(request):
     """Return log in page"""
@@ -24,7 +24,7 @@ def login(request):
             if user: 
                 auth.login(user=user, request=request)
                 messages.success(request, 'You have logged in successfully')
-                return redirect(reverse('service')) #TODO: When orders page is created redirect to orders. 
+                return redirect(reverse('index')) #TODO: When orders page is created redirect to orders. 
             else: 
                 login_form.add_error(None, 'Your username or password is incorrect')
     else:
@@ -35,7 +35,7 @@ def login(request):
 def register(request):
     """Return register page"""
     if request.user.is_authenticated:
-        return redirect(reverse('service')) #TODO: When orders page is created redirect to orders.
+        return redirect(reverse('index')) #TODO: When orders page is created redirect to orders.
 
     if request.method == 'POST':
         register_form = RegisterForm(request.POST)
@@ -49,7 +49,7 @@ def register(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, 'You have successfully registered')
-                return redirect(reverse('service')) #TODO: When orders page is created redirect to orders.
+                return redirect(reverse('index')) #TODO: When orders page is created redirect to orders.
             else: 
                 messages.error(request, 'Unable to register your account at this time')
     else:
