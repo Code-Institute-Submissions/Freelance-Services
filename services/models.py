@@ -6,10 +6,10 @@ class Service(models.Model):
     """
     Services model used to display a service
     """
-    created_at = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=255)
     description = models.TextField()
-    price = models.IntegerField()
+    price = models.DecimalField(max_digits=5, decimal_places=2)
+    images = models.ImageField(upload_to='images', null=True)
 
     def __str__(self):
         return(self.name)

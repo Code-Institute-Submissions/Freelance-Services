@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path, include
 from accounts.views import logout, login, register, profile_page
+from .settings import MEDIA_ROOT
+from django.views import static
 
 
 urlpatterns = [
@@ -27,4 +29,5 @@ urlpatterns = [
     re_path(r'^accounts/login/$', login, name="login"),
     re_path(r'^accounts/register/$', register, name="register"),
     re_path(r'^accounts/profile/$', profile_page, name="profile"),
+    re_path(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
 ]
