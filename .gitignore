@@ -5,7 +5,7 @@ requirements.txt
 db.sqlite3
 __pycache__
 *.yaml
-static
+static/admin
 nohup.out
 media/images/image-coming-soon-L_ioHDoPA.jpg
 media/images/image-coming-soon-L.jpg
