@@ -18,6 +18,7 @@ from django.urls import path, re_path, include
 from accounts.views import logout, login, register, profile_page
 from services.views import all_services
 from home.views import index
+from checkout.views import checkout
 from basket.views import view_basket, add_to_basket, adjust_basket
 from .settings import MEDIA_ROOT
 from django.views import static
@@ -25,6 +26,7 @@ from django.views import static
 
 urlpatterns = [
     path("", index, name='index'),   
+    path('checkout', checkout, name='checkout'),
     path('admin/', admin.site.urls),
     path('services/', all_services, name='services'),
     path('accounts/', include('accounts.urls')),
