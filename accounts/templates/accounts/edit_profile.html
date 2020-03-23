@@ -14,9 +14,10 @@
         {% csrf_token %}
         {{ form.email.errors }}
            {{ form | as_bootstrap }}
-           <br>
+           
         <button type="submit" class="btn btn-primary">Update Profile</button>
     </form>
+    <p class="text-center"><a class="nav-link" href="{% url 'password_change' %}">Change Password</a></p>
 </div>
 
 {% endblock %}

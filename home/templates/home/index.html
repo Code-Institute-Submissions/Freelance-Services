@@ -1,12 +1,18 @@
 {% extends 'base.html'%}
 
 {% block content %}
-
+{% for item in homepage %}
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-4">Fluid jumbotron</h1>
-        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+        <h1 class="display-4">{{ item.headline }}</h1>
+        <p class="lead">{{ item.subheadline }}</p>
     </div>
 </div>
- <h1>This is the home page</h1>
+
+<div class="container-fluid text-center">
+    <h2>About</h2>
+    <p>{{item.about}}</p>
+</div>
+
+ {%endfor%}
 {% endblock %}

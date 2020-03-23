@@ -2,33 +2,46 @@
 
 {% block content %}
 
-{% for service in services %}
-
-<div class="container-fluid text-center">
-    <div class="card-group">
-        <div class="card">
-            <img class="card-img-top" src="{{MEDIA_URL}}{{service.images}}" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">{{service.name}}</h5>
-                <p class="card-text">{{service.description}}</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">£{{service.price}}</small>
-            </div>
-        </div>
-
-        <form method="POST" action="{% url 'add_to_basket' service.id %}">
-            {% csrf_token %}
-            <div class="input-group">
-                <input id='quantity' name="quantity" type="number" min="1" max="10" class="form-control" placeholder="Quantity">
-                <span class="input-group-btn">
-                    <button class="btn btn-success" type="submit">Add to Basket</button>
-                </span>
-            </div>
-        </form>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4 text-center">Services and Pricing</h1>
     </div>
 </div>
-{% endfor %}
 
+<div class="container">
+    <div class="card-deck mb-3 text-center">
+
+        {% for service in services %}
+
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">{{service.name}}</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title text-danger">£{{service.price}}</h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>{{service.description}}</li>
+
+                </ul>
+
+
+
+            </div>
+            {% if user.is_authenticated %}
+            <div class="card-footer  align-bottom">
+                <form method="POST" action="{% url 'add_to_basket' service.id %}">
+                    {% csrf_token %}
+
+                    <button class="btn btn-primary" type="submit">Add to Basket</button>
+                </form>
+            </div>
+            {% endif %}
+
+        </div>
+
+
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}
