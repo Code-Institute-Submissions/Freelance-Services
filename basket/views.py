@@ -10,7 +10,8 @@ def view_basket(request):
 
 def add_to_basket(request, id):
     """Add a quantity of the specified service to the basket"""
-    quantity = int(request.POST.get('quantity'))
+    # quantity = int(request.POST.get('quantity'))
+    quantity = 1
     basket = request.session.get('basket', {})
     basket[id] = basket.get(id, quantity)
     request.session['basket'] = basket
