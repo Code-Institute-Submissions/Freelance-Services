@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required # Needed for login_required decorator
 from django.contrib.auth.models import User
-from accounts.forms import LoginForm, RegisterForm
+from accounts.forms import LoginForm, RegisterForm, EditProfileForm
 # Create your views here.
 
 @login_required # Ensures user is logged in before executing 
@@ -56,7 +56,24 @@ def register(request):
         register_form = RegisterForm()
     return render(request, 'accounts/register.html', {"register_form": register_form})
 
+
+
+@login_required # Ensures user is logged in before executing 
 def profile_page(request):
     """A page that displays the profile of the user"""
-    user = User.objects.get(email=request.user.email)
-    return render(request, 'accounts/profile.html', {"profile": user})
+    profile = User.objects.get(email=request.user.email)
+    return render(request, 'accounts/profile.html', {"profile": profile})
+
+
+@login_required # Ensures user is logged in before executing s
+def edit_profile(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('edit_profile'))
+    else:
+        form = EditProfileForm(instance=request.user)
+        args = {'form': form}
+        return render(request, 'accounts/edit_profile.html', args)
