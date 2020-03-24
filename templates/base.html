@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 
@@ -25,13 +26,6 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        {% if messages %}
-                        {%for message in messages %}
-                        <p class="pt-2 pr-5 font-italic font-bold text-success message"> {{ message }}</p>
-                        {% endfor %}
-                        {% endif %}
-                    </li>
-                    <li class="nav-item active">
                         <a class="nav-link active" href="{% url 'index' %}">Home <span
                                 class="sr-only">(current)</span></a>
                     </li>
@@ -50,7 +44,7 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{% url 'edit_profile' %}">My Profile</a>
                     </li>
-                 
+
                     <li class="nav-item active">
                         <a class="nav-link active" href="{% url 'view_basket' %}">Basket</a>
                     </li>
@@ -58,17 +52,19 @@
                         <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                     </li>
                     {% endif %}
-                    
+
                 </ul>
             </div>
         </nav>
+        {% if messages %}
+        {%for message in messages %}
+        <div class="alert alert-success m-0 ml-auto" role="alert">
+            <p class="alert-heading ml-auto">{{message}}</p>
+        </div>
+        {% endfor %}
+        {% endif %}
+
     </header>
-
-
-
-
-
-
 
     {% block content %}
     {% endblock %}
@@ -85,8 +81,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-        {% block head_js %}
-        {% endblock %}
+    <script src="{% static 'js/app.js' %}"></script>
+    {% block head_js %}
+    {% endblock %}
 </body>
 
 </html>
