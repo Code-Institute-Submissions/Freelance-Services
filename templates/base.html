@@ -69,6 +69,33 @@
     {% block content %}
     {% endblock %}
 
+    <div class="container-fluid text-center">
+        <footer class="pt-4 my-md-5 pt-md-5 border-top">
+            <div class="row">
+                <div class="col-6 col-md">
+                    <h5>About</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="{% url 'index' %}">You can read about us here</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Services</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="{% url 'services'%}">View a list of services that we offer</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Designed By</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="https://www.ethancundick.com">Ethan Cundick</a></li>
+                    </ul>
+                </div>
+            
+            </div>
+        </footer>
+    </div>
+    </div>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
