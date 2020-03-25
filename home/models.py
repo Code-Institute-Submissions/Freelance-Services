@@ -12,6 +12,12 @@ class HomePage(models.Model):
     headline = models.CharField(max_length=50, blank=False)
     subheadline = models.CharField(max_length=100, blank=False)
     about = models.TextField(blank=False)
+    first_skill_name = models.CharField(max_length=20, blank=True)
+    first_skill_description = models.TextField(blank=True)
+    second_skill_name = models.CharField(max_length=20, blank=True)
+    second_skill_description = models.TextField(blank=True)
+    third_skill_name = models.CharField(max_length=20, blank=True)
+    third_skill_description = models.TextField(blank=True)
 
     # Allows for only one home page to be created
     @classmethod
