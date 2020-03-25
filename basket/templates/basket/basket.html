@@ -1,12 +1,12 @@
 {% extends 'base.html'%}
 
 {% block content %}
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron purple jumbotron-fluid">
     <div class="container">
         <h1 class="display-4 text-center">Basket</h1>
     </div>
 </div>
-<div class="container">
+<div class="container pb-5">
     <ul class="list-unstyled">
         {% for item in basket_items %}
 
@@ -39,7 +39,7 @@
         {% endfor%}
     </ul>
 </div>
-<div class="container text-right pr-4">
+<div class="container text-right pr-4 pb-5">
     <p>Total</p>
     <p><span class=""></span>£{{ total }}</p>
     <a href="{%url 'checkout' %}" class="btn btn-success">Checkout</a>

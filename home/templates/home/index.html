@@ -2,22 +2,43 @@
 
 {% block content %}
 {% for item in homepage %}
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron purple jumbotron-fluid purple">
     <div class="container">
         <h1 class="display-4">{{ item.headline }}</h1>
         <p class="lead">{{ item.subheadline }}</p>
     </div>
 </div>
 
-<div class="container text-center">
+<div class="container text-center about p-3">
     <h2>About</h2>
     <p>{{item.about}}</p>
 </div>
 
-
+<div class="container-fluid skills text-center">
+    <h2 class="pt-4">Skills</h2>
+    <div class="row">
+    {% if item.first_skill_name and item.first_skill_description %}
+        <div class="col-md pt-3">
+            <h3>{{ item.first_skill_name }}</h3>
+            <p>{{  item.first_skill_description }}</p>
+        </div>
+    {% endif %}
+    {% if item.second_skill_name and item.second_skill_description %}
+    <div class="col-md pt-3">
+        <h3>{{ item.second_skill_name }}</h3>
+        <p>{{  item.second_skill_description }}</p>
+    </div>
+    {% endif %}
+    {% if item.third_skill_name and item.third_skill_description %}
+    <div class="col-md p-3">
+        <h3>{{ item.third_skill_name }}</h3>
+        <p>{{  item.third_skill_description }}</p>
+    </div>
+    {% endif %}
+    </div>
+</div>
 
 {%endfor%}
-
 
 
 {% endblock %}
