@@ -45,7 +45,10 @@ class RegisterForm(UserCreationForm):
         return password2
 
 class EditProfileForm(UserChangeForm):
-    password = None
+    """
+    Form that allows users to edit their profiles. 
+    """
+    password = None # Stops password from appearing on form
     class Meta:
         model = User
         fields = (

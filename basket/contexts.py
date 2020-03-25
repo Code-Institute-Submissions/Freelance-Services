@@ -4,6 +4,8 @@ from services.models import Service
 
 def basket_contents(request):
     """
+    Used to store basket data across all pages, 
+    This means that the user can browse the site without losing the basket contents..
     """
     basket = request.session.get('basket', {})
 

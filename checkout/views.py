@@ -14,19 +14,22 @@ stripe.api_key = settings.STRIPE_SECRET
 
 @login_required()
 def checkout(request):
+    """
+    Used to process payment, 
+    """
     if request.method=='POST':
-        order_form = OrderForm(request.POST)
-        payment_form = PaymentForm(request.POST)
+        order_form = OrderForm(request.POST) # gets order form from POST
+        payment_form = PaymentForm(request.POST) # gets Payment form from POST
 
-        if order_form.is_valid() and payment_form.is_valid():
-            order = order_form.save(commit=False)
+        if order_form.is_valid() and payment_form.is_valid(): # Checks if forms are valid
+            order = order_form.save(commit=False) 
             order.date = timezone.now()
             order.save()
 
 
-            basket = request.session.get('basket', {})
-            total = 0
-            for id, quantity in basket.items():
+            basket = request.session.get('basket', {}) #gets basket contents
+            total = 0 # sets total to 0 for later
+            for id, quantity in basket.items(): # Loops through basket items
                 service = get_object_or_404(Service, pk=id)
                 total += quantity * service.price
                 order_line_item = OrderLineItem(
@@ -35,19 +38,19 @@ def checkout(request):
                     quantity = quantity
                 )
                 order_line_item.save()
-            try:
+            try: # trys to make strip payment
                 customer = stripe.Charge.create(
                     amount = int(total * 100),
                     currency = "GBP",
                     description = request.user.email,
                     card = payment_form.cleaned_data['stripe_id'],
                 )
-            except stripe.error.CardError:
+            except stripe.error.CardError: # returns error if there is an issue
                 messages.error(request, 'Your card was declined!')
 
-            if customer.paid:
+            if customer.paid: 
                 messages.error(request, 'you have paid')
-                request.session['basket'] = {}
+                request.session['basket'] = {} # clears basket
                 return redirect(reverse('services'))
             else:
                 messages.error(request, "Unable to take payment")

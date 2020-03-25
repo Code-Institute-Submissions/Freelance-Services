@@ -67,6 +67,7 @@ def profile_page(request):
 
 @login_required # Ensures user is logged in before executing s
 def edit_profile(request):
+    """A page that displays a form for users to edit profile"""
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=request.user)
 

@@ -4,4 +4,4 @@ from .models import Service
 
 
 
-admin.site.register(Service)
+admin.site.register(Service) # Registers service to admin panel to allow Freelancer to add/edit services on the front end. 
