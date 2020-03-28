@@ -1,7 +1,6 @@
 venv
 notes.md
 .vscode
-requirements.txt
 db.sqlite3
 __pycache__
 *.yaml
