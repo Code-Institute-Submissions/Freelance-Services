@@ -15,7 +15,7 @@ def logout(request):
 def login(request):
     """Return log in page"""
     if request.user.is_authenticated:
-         return redirect(reverse('service'))
+         return redirect(reverse('index'))
     if request.method == 'POST':
         login_form = LoginForm(request.POST)
         if login_form.is_valid():
