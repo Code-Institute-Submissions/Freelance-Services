@@ -52,11 +52,12 @@ def checkout(request):
                     messages.error(request, 'Your card was declined!')
 
                 if customer.paid: 
-                    messages.error(request, 'you have paid')
+                    messages.error(request, 'Payment Successful')
                     request.session['basket'] = {} # clears basket
                     return redirect(reverse('services'))
                 else:
                     messages.error(request, "Unable to take payment")
+                    print('im here')
             else:
                 print(payment_form.errors)
                 messages.error(request, "We were unable to take a payment with that card")
